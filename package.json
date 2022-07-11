@@ -12,6 +12,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@parcel/compressor-brotli": "^2.6.2",
+    "@parcel/compressor-gzip": "^2.6.2",
     "@parcel/transformer-sass": "^2.6.2",
     "@parcel/transformer-typescript-types": "^2.6.2",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
