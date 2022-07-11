@@ -2,11 +2,140 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>My First Parcel App</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="language" content="English" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+
+    <meta name="title" content="JG" />
+    <meta
+      name="description"
+      content="Jules Goullée profile software engineering developer creative"
+    />
+    <meta
+      name="keywords"
+      content="Jules Goullée, profile, software engineering, developer creative"
+    />
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://jules.tech/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="JG" />
+    <meta
+      property="og:description"
+      content="Jules Goullée developer creative"
+    />
+    <meta
+      property="og:image"
+      content="../assets/images/profil.png?as=webp&width=512&height=512"
+    />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="jules.tech" />
+    <meta property="twitter:url" content="https://jules.tech/" />
+    <meta name="twitter:title" content="JG" />
+    <meta
+      name="twitter:description"
+      content="Jules Goullée developer creative"
+    />
+    <meta
+      name="twitter:image"
+      content="../assets/images/profil.png?as=webp&width=512&height=512"
+    />
+
+    <link rel="icon" href="../static/favicon.ico">
+    <title>JG - Creative Developer</title>
+    <link rel="stylesheet" href="style/main.scss" />
     <script type="module" src="index.ts"></script>
-    <link rel="stylesheet" href="style.scss" />
   </head>
   <body>
-    <h1>Hello, World!</h1>
+    <div class="main-container">
+      <div class="img-box-outer">
+        <div class="img-box-inner">
+          <img
+            height="640"
+            width="640"
+            alt="profile picture"
+            src="../assets/images/profil.png?as=webp&width=640&height=640"
+          />
+        </div>
+      </div>
+      <div class="content">
+        <h1 class="name">Jules Goullée</h1>
+        <h2 class="title">Creative Developer</h2>
+        <ul class="menu">
+          <li class="menu-item working-on-container">
+            <button class="accordion-toggle check-working-title">
+              Check what I'm working on
+            </button>
+            <div class="accordion-container github">
+              <a
+                href="https://github.com/julesGoullee"
+                target="_blank"
+                rel="noopener noreferrer"
+                >My Github Profile</a
+              >
+            </div>
+          </li>
+          <li class="menu-item contact-me-container">
+            <button class="accordion-toggle contact-me-title">
+              Contact me
+            </button>
+            <ul class="accordion-container">
+              <li class="accordion-item calendly">
+                <a
+                  href="https://calendly.com/julesgoullee/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Book a slot on Calendly</a
+                >
+              </li>
+              <li class="accordion-item telegram">
+                <a
+                  href="https://t.me/JulesGo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Direct message on Telegram</a
+                >
+              </li>
+              <!--              <li class="accordion-item discord"><a href="https://github.com/julesGoullee">Direct message on Discord</a></li>-->
+              <li class="accordion-item email">
+                <a
+                  href="mailto:julesgoullee@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Email me your thoughts</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="menu-item social-containerz">
+            <button class="accordion-toggle social-titlez">
+              Follow my social
+            </button>
+            <ul class="accordion-container">
+              <li class="accordion-item twitter">
+                <a
+                  href="https://twitter.com/JulesGoullee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Twitter</a
+                >
+              </li>
+              <li class="accordion-item linkedin">
+                <a
+                  href="https://www.linkedin.com/in/julesgoullee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Linkedin</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
