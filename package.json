@@ -12,6 +12,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.6.2",
     "@parcel/transformer-typescript-types": "^2.6.2",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
