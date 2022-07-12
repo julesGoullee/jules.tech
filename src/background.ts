@@ -11,8 +11,8 @@ export class Background {
   windowHalfY = 0
   constructor(container: Element) {
     this.container = container
-    this.windowHalfX = document.body.offsetWidth / 2
-    this.windowHalfY = document.body.offsetHeight / 2
+    this.windowHalfX = window.innerWidth / 2
+    this.windowHalfY = window.innerHeight / 2
     this.init()
     this.animate()
   }
@@ -60,21 +60,22 @@ export class Background {
     this.container.appendChild(this.renderer.domElement);
 
     (this.container as HTMLElement).style.touchAction = 'none'
-    this.container.addEventListener('pointermove', this.onPointerMove.bind(this))
+    window.addEventListener('pointermove', this.onPointerMove.bind(this))
+    window.addEventListener('touchmove', this.onPointerMove.bind(this))
     window.addEventListener('resize', this.onWindowResize.bind(this))
     window.addEventListener('scroll', this.onWindowResize.bind(this))
   }
   onWindowResize() {
-    this.windowHalfX = document.body.offsetWidth / 2
-    this.windowHalfY = document.body.offsetHeight / 2
+    this.windowHalfX = window.innerWidth / 2
+    this.windowHalfY = window.innerHeight / 2
 
     this.camera.aspect = document.body.offsetWidth / document.body.offsetHeight
     this.camera.updateProjectionMatrix()
     this.renderer.setSize(document.body.offsetWidth, document.body.offsetHeight)
   }
   onPointerMove(event) {
-    this.mouseX = event.clientX - this.windowHalfX
-    this.mouseY = event.clientY - this.windowHalfY
+    this.mouseX = event.clientX || event.touches[0].clientX- this.windowHalfX
+    this.mouseY = event.clientY || event.touches[0].clientY - this.windowHalfY
   }
   animate() {
     requestAnimationFrame(this.animate.bind(this))
