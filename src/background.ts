@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 
 export class Background {
-  container: Element
+  container: HTMLElement
   camera: THREE.PerspectiveCamera
   scene: THREE.Scene
   renderer: THREE.WebGLRenderer
@@ -10,9 +10,9 @@ export class Background {
   windowHalfX = 0
   windowHalfY = 0
   constructor(container: Element) {
-    this.container = container
-    this.windowHalfX = window.innerWidth / 2
-    this.windowHalfY = window.innerHeight / 2
+    this.container = container as HTMLElement
+    this.windowHalfX = document.body.offsetWidth / 2
+    this.windowHalfY = document.body.offsetHeight / 2
     this.init()
     this.animate()
   }
@@ -56,26 +56,32 @@ export class Background {
     this.renderer = new THREE.WebGLRenderer()
     this.renderer.setPixelRatio(window.devicePixelRatio)
     this.renderer.setSize(document.body.offsetWidth, document.body.offsetHeight)
-    this.renderer.setClearColor('#212121', 1)
-    this.container.appendChild(this.renderer.domElement);
-
-    (this.container as HTMLElement).style.touchAction = 'none'
+    this.renderer.setClearColor('#212121', 0)
+    this.container.appendChild(this.renderer.domElement)
+    this.container.style.touchAction = 'none'
     window.addEventListener('pointermove', this.onPointerMove.bind(this))
     window.addEventListener('touchmove', this.onPointerMove.bind(this))
     window.addEventListener('resize', this.onWindowResize.bind(this))
     window.addEventListener('scroll', this.onWindowResize.bind(this))
   }
   onWindowResize() {
-    this.windowHalfX = window.innerWidth / 2
-    this.windowHalfY = window.innerHeight / 2
+    this.windowHalfX = document.body.offsetWidth / 2
+    this.windowHalfY = document.body.offsetHeight / 2
 
     this.camera.aspect = document.body.offsetWidth / document.body.offsetHeight
     this.camera.updateProjectionMatrix()
     this.renderer.setSize(document.body.offsetWidth, document.body.offsetHeight)
   }
   onPointerMove(event) {
-    this.mouseX = event.clientX || event.touches[0].clientX- this.windowHalfX
-    this.mouseY = event.clientY || event.touches[0].clientY - this.windowHalfY
+    if (
+      (event.clientX || (event.touches && event.touches[0].clientX)) &&
+      (event.clientY || (event.touches && event.touches[0].clientY))
+    ) {
+      this.mouseX =
+        (event.clientX || event.touches[0].clientX) - this.windowHalfX
+      this.mouseY =
+        (event.clientY || event.touches[0].clientY) - this.windowHalfY
+    }
   }
   animate() {
     requestAnimationFrame(this.animate.bind(this))
