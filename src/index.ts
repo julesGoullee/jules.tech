@@ -1,5 +1,4 @@
 window.addEventListener('load', Main)
-
 function Main() {
   document.querySelectorAll('.accordion-toggle').forEach((button) => {
     button.addEventListener('click', () => {
@@ -15,4 +14,6 @@ function Main() {
       }
     })
   })
+  const container = document.querySelector('#background')
+  import('./background').then(({ Background }) => new Background(container))
 }

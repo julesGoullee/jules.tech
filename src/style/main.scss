@@ -39,6 +39,12 @@ body {
     display: flex;
   }
 
+  #background {
+    position: absolute;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+  }
   .main-container {
     gap: 4rem;
     padding: 8rem 4rem 4rem;
