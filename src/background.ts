@@ -62,10 +62,7 @@ export class Background {
     // this.container.style.touchAction = 'none'
     this.container.addEventListener('pointermove', this.onPointerMove.bind(this))
     window.addEventListener('resize', this.onWindowResize.bind(this))
-    window.addEventListener('scroll', () => {
-      console.info('oncscroll')
-      this.onWindowResize()
-    })
+    window.addEventListener('scroll', this.onWindowResize.bind(this))
   }
   onWindowResize() {
     this.windowHalfX = document.body.offsetWidth / 2
