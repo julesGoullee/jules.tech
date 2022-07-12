@@ -57,9 +57,9 @@ export class Background {
     this.renderer.setPixelRatio(window.devicePixelRatio)
     this.renderer.setSize(document.body.offsetWidth, document.body.offsetHeight)
     this.renderer.setClearColor('#212121', 1)
-    this.container.appendChild(this.renderer.domElement)
+    this.container.appendChild(this.renderer.domElement);
 
-    // this.container.style.touchAction = 'none'
+    (this.container as HTMLElement).style.touchAction = 'none'
     this.container.addEventListener('pointermove', this.onPointerMove.bind(this))
     window.addEventListener('resize', this.onWindowResize.bind(this))
     window.addEventListener('scroll', this.onWindowResize.bind(this))
