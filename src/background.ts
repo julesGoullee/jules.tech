@@ -28,30 +28,43 @@ export class Background {
     this.scene = new THREE.Scene()
     this.scene.fog = new THREE.FogExp2(0x0000ff, 0.001)
 
-    const geometry = new THREE.BufferGeometry()
-    const vertices = []
+    const geometryGroups = [
+      new THREE.BufferGeometry(),
+      new THREE.BufferGeometry(),
+      new THREE.BufferGeometry(),
+    ]
     const size = 2000
 
+    const colors = ['#45e645', '#39b7bf', '#4555e6']
+    const materialGroups = colors.map(
+      (color) =>
+        new THREE.PointsMaterial({
+          size: 2,
+          color,
+        })
+    )
+    const verticesGroups = [[], [], []]
     for (let i = 0; i < 20000; i++) {
       const x = (Math.random() * size + Math.random() * size) / 2 - size / 2
       const y = (Math.random() * size + Math.random() * size) / 2 - size / 2
       const z = (Math.random() * size + Math.random() * size) / 2 - size / 2
-
-      vertices.push(x, y, z)
+      verticesGroups[Math.floor(Math.random() * verticesGroups.length)].push(
+        x,
+        y,
+        z
+      )
     }
-
-    geometry.setAttribute(
-      'position',
-      new THREE.Float32BufferAttribute(vertices, 3)
+    geometryGroups.forEach((geometry, i) =>
+      geometry.setAttribute(
+        'position',
+        new THREE.Float32BufferAttribute(verticesGroups[i], 3)
+      )
     )
 
-    const material = new THREE.PointsMaterial({
-      size: 2,
-      color: 0xffffff,
-    })
-
-    const particles = new THREE.Points(geometry, material)
-    this.scene.add(particles)
+    const particlesGroups = geometryGroups.map(
+      (geometry, i) => new THREE.Points(geometry, materialGroups[i])
+    )
+    particlesGroups.forEach((particles) => this.scene.add(particles))
 
     this.renderer = new THREE.WebGLRenderer()
     this.renderer.setPixelRatio(window.devicePixelRatio)
