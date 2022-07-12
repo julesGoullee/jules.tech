@@ -14,7 +14,6 @@ export class Background {
     this.init()
     this.animate()
   }
-
   init() {
     this.camera = new THREE.PerspectiveCamera(
       50,
