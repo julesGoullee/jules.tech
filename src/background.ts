@@ -57,7 +57,7 @@ export class Background {
     this.renderer.setClearColor('#212121', 1)
     this.container.appendChild(this.renderer.domElement)
 
-    document.body.style.touchAction = 'none'
+    // document.body.style.touchAction = 'none'
     document.body.addEventListener('pointermove', this.onPointerMove.bind(this))
     window.addEventListener('resize', this.onWindowResize.bind(this))
   }
