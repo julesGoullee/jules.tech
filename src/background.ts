@@ -7,17 +7,19 @@ export class Background {
   renderer: THREE.WebGLRenderer
   mouseX = 0
   mouseY = 0
-  windowHalfX = window.innerWidth / 2
-  windowHalfY = window.innerHeight / 2
+  windowHalfX = 0
+  windowHalfY = 0
   constructor(container: Element) {
     this.container = container
+    this.windowHalfX = document.body.offsetWidth / 2
+    this.windowHalfY = document.body.offsetHeight / 2
     this.init()
     this.animate()
   }
   init() {
     this.camera = new THREE.PerspectiveCamera(
       50,
-      window.innerWidth / window.innerHeight,
+      document.body.offsetWidth / document.body.offsetHeight,
       5,
       2000
     )
@@ -53,21 +55,25 @@ export class Background {
 
     this.renderer = new THREE.WebGLRenderer()
     this.renderer.setPixelRatio(window.devicePixelRatio)
-    this.renderer.setSize(window.innerWidth, window.innerHeight)
+    this.renderer.setSize(document.body.offsetWidth, document.body.offsetHeight)
     this.renderer.setClearColor('#212121', 1)
     this.container.appendChild(this.renderer.domElement)
 
-    // document.body.style.touchAction = 'none'
-    document.body.addEventListener('pointermove', this.onPointerMove.bind(this))
+    // this.container.style.touchAction = 'none'
+    this.container.addEventListener('pointermove', this.onPointerMove.bind(this))
     window.addEventListener('resize', this.onWindowResize.bind(this))
+    window.addEventListener('scroll', () => {
+      console.info('oncscroll')
+      this.onWindowResize()
+    })
   }
   onWindowResize() {
-    this.windowHalfX = window.innerWidth / 2
-    this.windowHalfY = window.innerHeight / 2
+    this.windowHalfX = document.body.offsetWidth / 2
+    this.windowHalfY = document.body.offsetHeight / 2
 
-    this.camera.aspect = window.innerWidth / window.innerHeight
+    this.camera.aspect = document.body.offsetWidth / document.body.offsetHeight
     this.camera.updateProjectionMatrix()
-    this.renderer.setSize(window.innerWidth, window.innerHeight)
+    this.renderer.setSize(document.body.offsetWidth, document.body.offsetHeight)
   }
   onPointerMove(event) {
     this.mouseX = event.clientX - this.windowHalfX
